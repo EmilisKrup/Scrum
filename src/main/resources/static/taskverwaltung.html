@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Scrumboard</title>
+		<meta charset="UTF-8">
+
+		<style>
+			.box {
+				width: 300px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				background: #f9f9f9;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<span>Navigationsleiste:</span>
+		<a href="index.html">Startseite</a><a> | </a>
+		<a href="user_storyverwaltung.html">User-Stories verwalten</a><a> | </a>
+		<a href="taskverwaltung.html">Tasks verwalten</a><a> | </a>
+		<a href="listenverwaltung.html">Listen verwalten</a><a> | </a>
+		<a href="nutzerverwaltung.html">Nutzer-Verwaltung</a><a> | </a>
+		
+		<h1>Tasks verwalten</h1>
+		<p>Tasks verwalten</p>
+
+		<!-- Account erstellen -->
+		<div class="box">
+			<h3>Task aus User-Story generieren</h3>
+
+			<!-- ID Anzeigen -->
+			<p>Task-ID: Letzte ID +1</p>
+
+			<!-- QuellID -->
+			<span>ID der zu entwickelnden User Story</span><br>
+			<input type="number" id="storyId" placeholder="Hier eingeben...">
+			<br><br>
+
+			<!-- Titel -->
+			<span>Titel des Tasks</span><br>
+			<input type="text" id="titel" placeholder="Hier eingeben...">
+			<br><br>
+
+			<!-- Beschreibung -->
+			<span>Überarbeitete Beschreibung</span><br>
+			<input type="text" id="beschreibung" placeholder="Hier eingeben...">
+			<br><br>
+			
+			<span>Status</span><br>
+			<select id="status">
+				<option value="">-- Bitte wählen --</option>
+				<option value="1">unbearbeitet = 1</option>
+				<option value="2">in Bearbeitung = 2</option>
+				<option value="3">fertig = 3</option>
+			</select>
+			<br><br>
+
+			<h3>Mit Admindaten verifizieren:</h3>
+			<input type="text" id="username" placeholder="Benutzername" required>
+			<input type="password" id="password" placeholder="Passwort" required>
+			<br>
+
+			<!-- Button -->
+			<button onclick="login(event)">Erstellen</button>
+		</div>
+
+		<script>
+			// Login-Funktion
+			function login(event) {
+				event.preventDefault();
+				const username = document.getElementById("username").value;
+				const password = document.getElementById("password").value;
+				if(password == "password" && username == "admin"){
+					submitSelections();
+				} if(password == "password" && username == "productowner"){
+					submitSelections();
+				} if(password == "password" && username == "nutzer"){
+					submitSelections();
+				} else if(password != "password" || username != "admin"){
+					alert(`Authentifizierung Fehlgeschlagen, keine Änderungen wurden vorgenommen!`);
+				}
+			}
+
+			function submitSelections() {
+				// LOGIK IMPLEMENTIEREN MIT JSON FORMAT
+				const taskData={
+				 storyId: document.getElementById("storyId").value,
+				 titel: document.getElementById("titel").value,
+				 beschreibung: document.getElementById("beschreibung").value,
+				 status: document.getElementById("status").value,
+				};
+			fetch('/api/tasks',{
+					method: 'POST',
+					headers:{'Accept': 'application/json',
+						'Content-Type':'application/json'},
+					body: JSON.stringify(taskData)
+				})
+				.then(response => {
+        if (!response.ok) throw new Error("Server-Antwort war nicht ok");
+        return response.json();
+    })
+    .then(data => {
+        alert(`Erfolg! Task "${data.titel}" wurde gespeichert.`);
+        
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Fehler: Daten konnten nicht gespeichert werden. Vielleicht keine UserStory angelegt");
+	});
+			
+			}
+		</script>
+
+		<p>Zwei boxen mit a) allen User Stories und b) allen Tasks</p>
+	</body>
+</html>

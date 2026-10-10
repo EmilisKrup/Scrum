@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Scrumboard</title>
+		<meta charset="UTF-8">
+
+		<style>
+			.box {
+				width: 300px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				background: #f9f9f9;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<span>Navigationsleiste:</span>
+		<a href="index.html">Startseite</a><a> | </a>
+		<a href="user_storyverwaltung.html">User-Stories verwalten</a><a> | </a>
+		<a href="taskverwaltung.html">Tasks verwalten</a><a> | </a>
+		<a href="listenverwaltung.html">Listen verwalten</a><a> | </a>
+		<a href="nutzerverwaltung.html">Nutzer-Verwaltung</a><a> | </a>
+		
+		<h1>User-Stories verwalten</h1>
+		<p>User-Stories verwalten</p>		
+		
+		<!-- User Story erstellen -->
+		<div class="box">
+			<h3>Neue User Story anlegen</h3>
+
+			<!-- ID Anzeigen -->
+			<p>User-Story-ID: ANZEIGEN, WIE??</p>
+
+			<!-- Titel -->
+			<span>Titel</span><br>
+			<input type="text" id="titel" placeholder="Hier eingeben...">
+			<br><br>
+
+			<!-- Beschreibung -->
+			<span>Beschreibung</span><br>
+			<input type="text" id="beschreibung" placeholder="Hier eingeben...">
+			<br><br>
+
+			<span>Priorität</span><br>
+			<select id="prioritaet">
+				<option value="">-- Bitte wählen --</option>
+				<option value="1">Gering = 1</option>
+				<option value="2">Mittel = 2</option>
+				<option value="3">Hoch = 3</option>
+			</select>
+			<br><br>
+
+			<!-- Beschreibung -->
+			<span>Liste Zuweisen (ID)</span><br>
+			<input type="number" id="listId" placeholder="Hier eingeben...">
+			<br><br>
+
+			<h3>Mit Nutzerdaten verifizieren:</h3>
+			<input type="text" id="username" placeholder="Benutzername" required>
+			<input type="password" id="password" placeholder="Passwort" required>
+			<br>
+
+			<!-- Button -->
+			<button onclick="login(event)">Erstellen</button>
+		</div>
+
+		<script>
+			// Login-Funktion
+			function login(event) {
+				event.preventDefault();
+				const username = document.getElementById("username").value;
+				const password = document.getElementById("password").value;
+				if(password == "password" && username == "admin"){
+					submitSelections();
+				} else if(password == "password" && username == "productowner"){
+					submitSelections();
+				}
+				else if(password != "password" || username != "admin"){
+					alert(`Authentifizierung Fehlgeschlagen, keine Änderungen wurden vorgenommen!`);
+				}
+			}
+
+			function submitSelections() {
+				// LOGIK IMPLEMENTIEREN MIT JSON FORMAT
+				const storyData = {
+				 titel: document.getElementById("titel").value,
+				 beschreibung: document.getElementById("beschreibung").value,
+				 prioritaet: document.getElementById("prioritaet").value,
+				 listId: document.getElementById("listId").value,
+				};
+				fetch('/api/stories',{
+					method: 'POST',
+					headers:{'Accept': 'application/json',
+						'Content-Type':'application/json'},
+					body: JSON.stringify(storyData)
+				})
+				.then(response => {
+        if (!response.ok) throw new Error("Server-Antwort war nicht ok");
+        return response.json();
+    })
+    .then(data => {
+        alert(`Erfolg! User Story "${data.titel}" wurde gespeichert.`);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Fehler: Daten konnten nicht gespeichert werden. Vielleicht keine Liste angelegt.");
+	});
+			}
+		</script>
+		
+	</body>
+</html>

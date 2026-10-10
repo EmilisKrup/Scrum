@@ -1,0 +1,44 @@
+FATAL  | wrapper  | 2026/03/08 14:10:18 | OpenSCManager failed - Zugriff verweigert (0x5)
+FATAL  | wrapper  | 2026/03/08 14:10:45 | OpenSCManager failed - Zugriff verweigert (0x5)
+STATUS | wrapper  | 2026/03/08 14:10:55 | --> Wrapper Started as Console
+STATUS | wrapper  | 2026/03/08 14:10:55 | Launching a JVM...
+INFO   | jvm 1    | 2026/03/08 14:10:55 | Wrapper (Version 3.2.3) http://wrapper.tanukisoftware.org
+INFO   | jvm 1    | 2026/03/08 14:10:55 |   Copyright 1999-2006 Tanuki Software, Inc.  All Rights Reserved.
+INFO   | jvm 1    | 2026/03/08 14:10:55 | 
+INFO   | jvm 1    | 2026/03/08 14:10:55 | 
+INFO   | jvm 1    | 2026/03/08 14:10:55 | WARNING - Unable to load the Wrapper's native library 'wrapper.dll'.
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           The file is located on the path at the following location but
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           could not be loaded:
+INFO   | jvm 1    | 2026/03/08 14:10:55 |             C:\Users\kemil\Documents\Uni-Rostock\Scrum\scrumboard\H2\service\.\wrapper.dll
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           Please verify that the file is readable by the current user
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           and that the file has not been corrupted in any way.
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           One common cause of this problem is running a 32-bit version
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           of the Wrapper with a 64-bit version of Java, or vica versa.
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           This is a 64-bit JVM.
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           Reported cause:
+INFO   | jvm 1    | 2026/03/08 14:10:55 |             C:\Users\kemil\Documents\Uni-Rostock\Scrum\scrumboard\H2\service\wrapper.dll: Can't load IA 32-bit .dll on a AMD 64-bit platform
+INFO   | jvm 1    | 2026/03/08 14:10:55 |           System signals will not be handled correctly.
+INFO   | jvm 1    | 2026/03/08 14:10:55 | 
+INFO   | jvm 1    | 2026/03/08 14:10:56 | TCP server running at tcp://192.168.178.25:9092 (only local connections)
+INFO   | jvm 1    | 2026/03/08 14:10:56 | Web Console server running at http://192.168.178.25:8082 (only local connections)
+STATUS | wrapper  | 2026/03/08 14:26:06 | --> Wrapper Started as Console
+STATUS | wrapper  | 2026/03/08 14:26:06 | Launching a JVM...
+INFO   | jvm 1    | 2026/03/08 14:26:06 | Wrapper (Version 3.2.3) http://wrapper.tanukisoftware.org
+INFO   | jvm 1    | 2026/03/08 14:26:06 |   Copyright 1999-2006 Tanuki Software, Inc.  All Rights Reserved.
+INFO   | jvm 1    | 2026/03/08 14:26:06 | 
+INFO   | jvm 1    | 2026/03/08 14:26:06 | 
+INFO   | jvm 1    | 2026/03/08 14:26:06 | WARNING - Unable to load the Wrapper's native library 'wrapper.dll'.
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           The file is located on the path at the following location but
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           could not be loaded:
+INFO   | jvm 1    | 2026/03/08 14:26:06 |             C:\Users\kemil\Documents\Uni-Rostock\Scrum\scrumboard\H2\service\.\wrapper.dll
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           Please verify that the file is readable by the current user
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           and that the file has not been corrupted in any way.
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           One common cause of this problem is running a 32-bit version
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           of the Wrapper with a 64-bit version of Java, or vica versa.
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           This is a 64-bit JVM.
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           Reported cause:
+INFO   | jvm 1    | 2026/03/08 14:26:06 |             C:\Users\kemil\Documents\Uni-Rostock\Scrum\scrumboard\H2\service\wrapper.dll: Can't load IA 32-bit .dll on a AMD 64-bit platform
+INFO   | jvm 1    | 2026/03/08 14:26:06 |           System signals will not be handled correctly.
+INFO   | jvm 1    | 2026/03/08 14:26:06 | 
+INFO   | jvm 1    | 2026/03/08 14:26:07 | TCP server running at tcp://192.168.178.25:9092 (only local connections)
+INFO   | jvm 1    | 2026/03/08 14:26:07 | Web Console server running at http://192.168.178.25:8082 (only local connections)

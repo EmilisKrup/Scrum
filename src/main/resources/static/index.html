@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Scrumboard</title>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+	</head>
+	
+	<body>
+		<span>Navigationsleiste:</span>
+		<a href="index.html">Startseite</a><a> | </a>
+		<a href="user_storyverwaltung.html">User-Stories verwalten</a><a> | </a>
+		<a href="taskverwaltung.html">Tasks verwalten</a><a> | </a>
+		<a href="listenverwaltung.html">Listen verwalten</a><a> | </a>
+		<a href="nutzerverwaltung.html">Nutzer-Verwaltung</a><a> | </a>
+
+		<h1>Scrumboard</h1>
+		<p>Hier könnte deine Werbung stehen</p>
+
+		<p>hochsichere Passwortdatenbank:</p>
+		<p>(Nur befugte dürfen angucken!!111!)</p>
+		 <table>
+			<tr>
+				<th>Nutzer</th>
+				<th>password</th>
+			</tr>
+			<tr>
+				<td>admin</td>
+				<td>password</td>
+			</tr>
+			<tr>
+				<td>productowner</td>
+				<td>password</td>
+			</tr>
+			<tr>
+				<td>nutzer</td>
+				<td>password</td>
+			</tr>
+			</table> 
+		<button hx-get="/count" hx-trigger="load" hx-swap="outerHTML">
+		</button>
+	</body>
+</html>

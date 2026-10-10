@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Scrumboard</title>
+		<meta charset="UTF-8">
+
+		<style>
+			.box {
+				width: 300px;
+				padding: 20px;
+				border: 1px solid #ccc;
+				background: #f9f9f9;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<span>Navigationsleiste:</span>
+		<a href="index.html">Startseite</a><a> | </a>
+		<a href="user_storyverwaltung.html">User-Stories verwalten</a><a> | </a>
+		<a href="taskverwaltung.html">Tasks verwalten</a><a> | </a>
+		<a href="listenverwaltung.html">Listen verwalten</a><a> | </a>
+		<a href="nutzerverwaltung.html">Nutzer-Verwaltung</a><a> | </a>
+		
+		<h1>Listen verwalten</h1>
+		<p>Listen verwalten</p>
+
+		<!-- Account erstellen -->
+		<div class="box">
+			<h3>Liste anlegen</h3>
+
+			<!-- ID Anzeigen -->
+			<p>List-ID: Letzte ID +1</p>
+
+			<!-- Titel -->
+			<span>Titel der Liste</span><br>
+			<input type="text" id="titel" placeholder="Hier eingeben...">
+			<br><br>
+
+			<h3>Mit Admindaten verifizieren:</h3>
+			<input type="text" id="username" placeholder="Benutzername" required>
+			<input type="password" id="password" placeholder="Passwort" required>
+			<br>
+
+			<!-- Button -->
+			<button onclick="login(event)">Erstellen</button>
+		<br>
+		<h3>Liste mit Tasks anzeigen:</h3>
+		<input type="number" id="listId" placeholder="ListID eingeben">
+		<button onclick="listAnzeigen(event)">Anzeigen</button>
+		<br>
+		<br>
+		<h2>Alle Tasks</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titel</th>
+            <th>Beschreibung</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="taskTable">
+        </tbody>
+</table>
+
+
+		</div>
+
+		<script>
+			// Login-Funktion
+			function login(event) {
+				event.preventDefault();
+				const username = document.getElementById("username").value;
+				const password = document.getElementById("password").value;
+				if(password == "password" && username == "admin"){
+					submitSelections();
+				} if(password == "password" && username == "productowner"){
+					submitSelections();
+				} if(password == "password" && username == "nutzer"){
+					submitSelections();
+				} else if(password != "password" || username != "admin"){
+					alert(`Authentifizierung Fehlgeschlagen, keine Änderungen wurden vorgenommen!`);
+				}
+			}
+
+			function submitSelections() {
+				// LOGIK IMPLEMENTIEREN MIT JSON FORMAT
+				const listData={
+				titel: document.getElementById("titel").value,
+				}
+			
+			fetch('/api/list',{
+					method: 'POST',
+					headers:{'Accept': 'application/json',
+						'Content-Type':'application/json'},
+					body: JSON.stringify(listData)
+				})
+				.then(response => {
+        if (!response.ok) throw new Error("Server-Antwort war nicht ok");
+        return response.json();
+    })
+    .then(data => {
+        alert(`Erfolg! List "${data.titel}" wurde gespeichert.`);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Fehler: Daten konnten nicht gespeichert werden.");
+	});
+}
+		function listAnzeigen(event){
+			event.preventDefault();
+			const listId=document.getElementById("listId").value;
+		fetch(`/api/tasks/liste/${listId}`)	
+		.then(response=> response.json())
+		.then(tasks=>{
+			const tablebody=document.getElementById("taskTable");
+			tablebody.innerHTML="";
+			tasks.forEach(task => {
+				const row = `
+                    <tr>
+                        <td>${task.id}</td>
+                        <td>${task.titel}</td>
+                        <td>${task.beschreibung}</td>
+                        <td>${task.status}</td>
+                    </tr>
+                `;
+                tablebody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error("Fehler beim Laden:", error));
+}
+
+		</script>
+
+		<p>Zwei boxen mit a) allen User Stories und b) allen Tasks</p>
+	</body>
+</html>
